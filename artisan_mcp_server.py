@@ -93,19 +93,6 @@ async def app_lifespan(server: FastMCP) -> AsyncIterator[AppContext]:
 # Create the MCP server with lifespan
 mcp = FastMCP("Laravel Artisan", lifespan=app_lifespan)
 
-@mcp.resource("artisan://commands")
-def list_whitelisted_commands() -> str:
-    """List all whitelisted Artisan commands"""
-    # Use global config instead of context
-    global config
-    
-    if not config["whitelisted_commands"]:
-        return "No commands are whitelisted in the current configuration."
-    
-    return "Whitelisted Artisan commands:\n" + "\n".join(
-        f"- {cmd}" for cmd in config["whitelisted_commands"]
-    )
-
 @mcp.tool()
 def run_artisan(command: str) -> str:
     """
@@ -156,26 +143,17 @@ def run_artisan(command: str) -> str:
         return f"Error executing command: {str(e)}"
 
 @mcp.tool()
-def list_all_artisan_commands() -> str:
-    """List all available Artisan commands in the Laravel application"""
+def list_available_artisan_commands() -> str:
+    """List all whitelisted Artisan commands"""
+    # Use global config instead of context
     global config
     
-    php_path = find_php_executable()  # Get PHP path when needed
-    artisan_path = os.path.join(config["artisan_directory"], "artisan")
+    if not config["whitelisted_commands"]:
+        return "No commands are whitelisted in the current configuration."
     
-    try:
-        result = subprocess.run(
-            [php_path, artisan_path, "list", "--format=txt"],
-            cwd=config["artisan_directory"],
-            capture_output=True,
-            text=True,
-            check=True
-        )
-        return result.stdout
-    except subprocess.CalledProcessError as e:
-        return f"Error listing commands: {e.stderr or e.stdout}"
-    except Exception as e:
-        return f"Failed to list commands: {str(e)}"
+    return "Whitelisted Artisan commands:\n" + "\n".join(
+        f"- {cmd}" for cmd in config["whitelisted_commands"]
+    )
 
 # Run the server if this script is executed directly
 if __name__ == "__main__":
