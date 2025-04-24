@@ -80,7 +80,7 @@ Once the Inspector is running:
 1. Open the web interface at http://localhost:5173
 2. Explore the "Resources" tab to see available resources
 3. Test the tools under the "Tools" tab:
-   - `list_all_artisan_commands`: Shows all commands in your Laravel project
+   - `list_available_artisan_commands`: Shows all whitelisted commands in your Laravel project
    - `run_artisan`: Executes a specific command (must be whitelisted)
 
 ## Claude Integration
@@ -137,21 +137,12 @@ Executes a whitelisted Artisan command.
 **Example usage in Claude:**
 "Run the route:list command to show all available routes in my Laravel app."
 
-### `list_all_artisan_commands`
+### `list_available_artisan_commands`
 
-Displays all available Artisan commands in the Laravel application.
-
-**Example usage in Claude:**
-"Show me all available Artisan commands in my Laravel project."
-
-## Available Resources
-
-### `artisan://commands`
-
-Returns a list of all whitelisted commands configured for the server.
+Displays all available whitelisted Artisan commands in the Laravel application.
 
 **Example usage in Claude:**
-"What Artisan commands can I use through you?"
+"Show me all available Artisan commands."
 
 ## Security Considerations
 

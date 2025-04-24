@@ -1,6 +1,6 @@
 [project]
 name = "laravel-artisan-mcp"
-version = "0.1.0"
+version = "1.0.0"
 description = "Laravel Artisan MCP Server"
 readme = "README.md"
 requires-python = ">=3.10"
