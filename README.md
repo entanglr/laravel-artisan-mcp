@@ -1,3 +1,5 @@
+[![MseeP.ai Security Assessment Badge](https://mseep.net/pr/entanglr-laravel-artisan-mcp-badge.png)](https://mseep.ai/app/entanglr-laravel-artisan-mcp)
+
 # Laravel Artisan MCP Server
 
 A Model Context Protocol (MCP) server that enables secure execution of Laravel Artisan commands through Claude and other MCP clients. This server acts as a bridge between AI assistants and your **local** Laravel applications, allowing controlled management of Laravel projects through natural language conversations.
